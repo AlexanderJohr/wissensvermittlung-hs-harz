@@ -1,0 +1,258 @@
+% Dies ist die Preambel
+% \documentclass[12pt,a4paper,bibtotoc, twoside, cleardoublepage=empty]{article} % twoside
+\documentclass[12pt,a4paper,bibtotoc, cleardoublepage=empty]{article}  % oneside centered
+\bibliographystyle{plain}
+
+\usepackage{pdfpages} % import pdf
+
+
+% das ist Standard - nie ohne aus dem Haus gehen
+\usepackage[german]{babel}
+% Biber!!!!!!!!!!!!!!!!!!
+
+
+\usepackage{ebgaramond}
+
+\usepackage{typearea}
+\usepackage[style=authortitle]{biblatex}
+\usepackage[babel,german=guillemets]{csquotes}
+\bibliography{lit/literatur}
+
+
+
+\usepackage[onehalfspacing]{setspace}
+
+\usepackage{tabularx} % in the preamble
+
+% Fuﬂnoten auch in ‹berschriften
+\usepackage[stable]{footmisc}
+
+% Bilder
+\usepackage{graphicx}
+\graphicspath{ {../img/} } 
+\usepackage{float} 
+
+% Seitenraender 
+\usepackage{geometry}
+
+%\geometry{a4paper, top=20mm, left=35mm, right=20mm, bottom=20mm,headsep=12mm, footskip=12mm} % twoside
+\geometry{a4paper, top=20mm, left=20mm, right=20mm, bottom=20mm,headsep=12mm, footskip=12mm} % oneside centered
+
+
+%\usepackage{natbib}
+
+
+%Hinweisbox
+\usepackage{calc}
+\usepackage{hhline} 
+\usepackage{multirow} 
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{graphicx}
+
+\newlength{\iconwidth}
+\setlength{\iconwidth}{1cm}
+
+\definecolor{boxheadcol}{gray}{.6}
+\definecolor{boxcol}{gray}{.9}
+
+\newenvironment{displaybox}[2]{%
+  \begin{center}
+    \setlength\arrayrulewidth{0.75pt}%
+    \arrayrulecolor{white}%
+    \renewcommand{\arraystretch}{1.3}%
+    \begin{tabular}{p{\iconwidth}p{\linewidth-4\tabcolsep-\iconwidth}}
+      \multirow{2}{*}{#2}&\cellcolor{boxheadcol}\textbf{\sffamily\color{white}#1} \\%
+      \hhline{~-}%
+      &\cellcolor{boxcol}%
+}{%
+      \\
+    \end{tabular}
+  \end{center}%
+}
+
+
+\newenvironment{Tipp}{%
+\begin{displaybox}{Tipp}{\includegraphics[width=\iconwidth]{img/com/icon-tipp}}}%
+{\end{displaybox}}
+
+\newenvironment{Hinweis}{%
+\begin{displaybox}{Hinweis}{\includegraphics[width=\iconwidth]{img/com/icon-hinweis}}}%
+{\end{displaybox}}
+%Hinweisbox ende
+
+% Standart Kopfzeile 
+\pagestyle{headings}
+  
+% Referenzen
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+	citecolor=black,
+  urlcolor=blue,
+  pdfborder={0 0 0}
+}
+
+% Mit Mausklick zum Ziel
+\usepackage{nameref}
+% URLs
+\usepackage{url} 
+
+
+
+% Umlaute:
+% Immer nur einen inputenc verwenden, sonst Fehler!
+% Linux
+% \usepackage[latin1]{inputenc} 
+% Windows
+\usepackage[utf8]{inputenc}
+
+% Umlaute auch in der PDF
+\usepackage[T1]{fontenc}
+
+% Fuer jede Section eine neue Seite
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
+
+% Fuer jede SubSection eine neue Seite
+%\let\stdsubsection\subsection
+%\renewcommand\subsection{\newpage\stdsubsection}
+
+%\usepackage{natbib}	% Literaturverzeichnis
+
+% \usepackage{skull}	% alles hat ein Ende
+
+\usepackage{color}	% bring Farbe ins Spiel
+% Fuer Codebeispiele
+\definecolor{DarkPurple}{rgb}{0.4,0.1,0.4}
+\definecolor{DarkCyan}{rgb}{0.0,0.5,0.4}
+\definecolor{LightLime}{rgb}{0.4,0.6,0.5}
+\definecolor{Blue}{rgb}{0.0,0.0,1.0}
+
+\definecolor{forestgreen}{RGB}{34,139,34}
+\definecolor{orangered}{RGB}{239,134,64}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+
+% sch?nere Serifenfonts
+\usepackage{times}		
+\usepackage{lmodern}
+	
+% deutsche Abs?tze
+\parskip2ex		% Absatzabsstand	
+\parindent0ex		% Absatzeinzug
+
+% keine Hurenkinder und Schusterjungen
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Fuer mehr Codeschnipsel Funktionen
+\usepackage{moreverb}
+
+\usepackage{listings}
+
+% f?r Java-Bezeichner und -Keywords im Flie?text
+\newcommand{\code}[1]{\small\lstinline[style=InlineJava]!#1!\normalsize}
+%\newcommand{\code}[1]{\scriptsize\texttt{#1}\normalsize}
+
+% fuer Listings mit Eintrag im Inhaltsverzeichnis
+%\newcommand{\newlisting}[2]{
+%\subsubsection*{Listing \ref{lst:#1}: #2}
+%\addcontentsline{toc}{subsubsection}{\ref{lst:#1}. #2}}
+
+\let\underscore\_
+\newcommand{\myunderscore}{\renewcommand{\_}{\underscore\hspace{0pt}}}
+%Issue the changed underscore command to the whole document.
+\myunderscore
+
+\lstdefinestyle{Java}
+{
+language=Java,
+numberfirstline,
+numberstyle=\tiny\sffamily,
+tabsize=5,
+captionpos=b,
+aboveskip=1em,
+belowskip=1em,
+columns=flexible,
+xleftmargin=2em,
+xrightmargin=1em,
+frame=single,
+frameround=tttt,
+commentstyle=\itshape\color{LightLime},
+keywordstyle=\bfseries\color{DarkPurple},
+basicstyle=\footnotesize\ttfamily,
+stringstyle=\color{Blue},
+showstringspaces=false,
+}
+
+\lstdefinestyle{XML} {
+    language=XML,
+    extendedchars=true, 
+    breaklines=true,
+    breakatwhitespace=true,
+    emph={},
+    emphstyle=\color{red},
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    commentstyle=\color{gray}\upshape,
+    morestring=[b]",
+    morecomment=[s]{<?}{?>},
+    morecomment=[s][\color{forestgreen}]{<!--}{-->},
+    keywordstyle=\color{orangered},
+    stringstyle=\ttfamily\color{black}\normalfont,
+    tagstyle=\color{darkblue}\bf,
+    morekeywords={attribute,xmlns,version,type,release},
+}
+
+
+
+
+\lstnewenvironment{javalisting}[1][]
+{
+	\lstset{language=Java, 
+					 style=Java
+	}
+}
+{}
+
+\newenvironment{javalistingfigure}
+{
+\begin{figure}
+\begin{javalisting}
+}
+{
+\end{javalisting}
+	\caption{asasas}
+	\label{fig:javalisting}
+\end{figure}
+}
+
+
+%\lstnewenvironment{javalisting}
+%{
+%\begin{center}
+	%\begin{figure}
+
+%		\begin{lstlisting}[style=Java]
+		
+		%		public class UserSession implements Serializable{}
+
+%}
+%{
+%		\end{lstlisting} 
+
+		%\caption{dsdsds}
+		%\label{fig:sddsdsds}
+		
+	%\end{figure}
+%\end{center}
+%}
+
+% Strikeout
+\usepackage{ulem}
+
+% Zeilenumbruch Bib
+\renewcommand*{\labelnamepunct}{\newunitpunct\par}
